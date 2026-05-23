@@ -1,0 +1,43 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}Меню{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <p class="eyebrow">Меню ресторану</p>
+    <h1>Страви та графік роботи</h1>
+</section>
+
+<section class="layout-two">
+    <div class="menu-grid">
+        {% for item in items %}
+            <article class="menu-card">
+                <div>
+                    <p class="category">{{ item.get_category_display }}</p>
+                    <h2>{{ item.name }}</h2>
+                    <p>{{ item.description }}</p>
+                </div>
+                <strong>{{ item.price }} грн</strong>
+            </article>
+        {% empty %}
+            <p>Меню ще порожнє. Додай страви через Django Admin.</p>
+        {% endfor %}
+    </div>
+
+    <aside class="side-panel">
+        <h2>Графік</h2>
+        {% for row in schedule %}
+            <div class="schedule-row">
+                <span>{{ row.day }}</span>
+                {% if row.is_closed %}
+                    <strong>Зачинено</strong>
+                {% else %}
+                    <strong>{{ row.open_time|time:"H:i" }} - {{ row.close_time|time:"H:i" }}</strong>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Графік можна заповнити в адмін-панелі.</p>
+        {% endfor %}
+    </aside>
+</section>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}Бронювання{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <p class="eyebrow">Карта залу</p>
+    <h1>Бронювання столика</h1>
+</section>
+
+<section class="booking-shell">
+    <form class="filter-panel" id="booking-form">
+        {% csrf_token %}
+        <label>
+            Дата
+            <input type="date" id="date" name="date" required>
+        </label>
+        <label>
+            Час
+            <input type="time" id="time" name="time" required value="18:00">
+        </label>
+        <label>
+            Гостей
+            <input type="number" id="guests" name="guests" min="1" value="2" required>
+        </label>
+        <label>
+            Зона
+            <select id="zone" name="zone">
+                <option value="">Будь-яка</option>
+                {% for hall in halls %}
+                    <option value="{{ hall.zone }}">{{ hall.zone }} - {{ hall.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Ім'я
+            <input type="text" id="customer_name" name="customer_name" value="{{ user.get_username }}" required>
+        </label>
+        <label>
+            Телефон
+            <input type="tel" id="phone" name="phone" placeholder="+380..." required>
+        </label>
+        <input type="hidden" id="selected-table" name="table">
+        <button type="button" id="check-btn">Перевірити доступність</button>
+        <button type="submit" class="primary">Забронювати</button>
+        <p class="form-note" id="form-message"></p>
+    </form>
+
+    <div class="hall-map">
+        <div class="legend">
+            <span><i class="legend-box free"></i> Вільний</span>
+            <span><i class="legend-box busy"></i> Зайнятий</span>
+            <span><i class="legend-box selected"></i> Обраний</span>
+        </div>
+        <div class="tables-grid" id="tables-grid">
+            {% for table in tables %}
+                <button
+                    class="table-tile free"
+                    data-table-id="{{ table.id }}"
+                    data-zone="{{ table.hall.zone }}"
+                    data-seats="{{ table.seats }}"
+                    style="grid-column: {{ table.x }}; grid-row: {{ table.y }};"
+                    type="button">
+                    <span>{{ table.number }}</span>
+                    <small>{{ table.seats }} місць</small>
+                    <em>{{ table.hall.zone }}</em>
+                </button>
+            {% empty %}
+                <p>Столики ще не створені. Додай їх в Django Admin.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div class="modal" id="auth-modal" hidden>
+    <div class="modal-body">
+        <h2>Потрібен акаунт</h2>
+        <p>Бронювати столики можуть тільки зареєстровані користувачі.</p>
+        <div class="actions">
+            <a class="button primary" href="{% url 'login' %}">Login</a>
+            <a class="button" href="{% url 'register' %}">Register</a>
+        </div>
+        <button type="button" class="link-button" id="close-modal">Закрити</button>
+    </div>
+</div>
+
+{{ user.is_authenticated|json_script:"is-authenticated" }}
+<script>
+    window.bookingConfig = {
+        csrfToken: document.querySelector('[name=csrfmiddlewaretoken]').value,
+        isAuthenticated: JSON.parse(document.getElementById('is-authenticated').textContent),
+    };
+</script>
+<script src="/static/booking/booking.js"></script>
+{% endblock %}
