@@ -178,11 +178,31 @@ main {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 8px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 190px;
-    padding: 20px;
+}
+
+.menu-card > div,
+.menu-card > strong {
+    padding: 0 20px;
+}
+
+.menu-card > div {
+    padding-top: 18px;
+}
+
+.menu-card > strong {
+    padding-bottom: 20px;
+}
+
+.menu-image {
+    aspect-ratio: 16 / 10;
+    display: block;
+    object-fit: cover;
+    width: 100%;
 }
 
 .menu-card h2,

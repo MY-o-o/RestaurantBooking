@@ -12,6 +12,9 @@
     <div class="menu-grid">
         {% for item in items %}
             <article class="menu-card">
+                {% if item.image_url %}
+                    <img class="menu-image" src="{{ item.image_url }}" alt="{{ item.name }}">
+                {% endif %}
                 <div>
                     <p class="category">{{ item.get_category_display }}</p>
                     <h2>{{ item.name }}</h2>
