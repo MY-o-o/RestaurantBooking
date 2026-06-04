@@ -16,9 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.contrib.auth.views import LogoutView, PasswordResetCompleteView
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 
+from booking.auth_views import (
+    SecureLoginView,
+    SecurePasswordResetConfirmView,
+    SecurePasswordResetDoneView,
+    SecurePasswordResetView,
+)
 from booking import views
 
 urlpatterns = [
@@ -26,7 +33,12 @@ urlpatterns = [
     path('menu/', views.menu_page, name='menu'),
     path('booking/', views.booking_page, name='booking'),
     path('register/', views.register_view, name='register'),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/login/', SecureLoginView.as_view(), name='login'),
+    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('accounts/password_reset/', SecurePasswordResetView.as_view(), name='password_reset'),
+    path('accounts/password_reset/done/', SecurePasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('accounts/reset/<uidb64>/<token>/', SecurePasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('accounts/reset/done/', PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
     path('api/', include('booking.api_urls')),
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('admin/', admin.site.urls),

@@ -1,7 +1,8 @@
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 from django.shortcuts import redirect, render
 
+from .forms import RegistrationForm
 from .models import Hall, MenuItem, RestaurantTable, WorkingHours
 
 
@@ -23,13 +24,14 @@ def booking_page(request):
 
 def register_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, 'Account created successfully.')
             return redirect('booking')
     else:
-        form = UserCreationForm()
+        form = RegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
 
 # Create your views here.

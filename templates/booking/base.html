@@ -1,24 +1,23 @@
 {% load static %}
 <!doctype html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Restaurant Booking{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'booking/styles.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
     <header class="topbar">
         <a class="brand" href="{% url 'home' %}">Urban Table</a>
         <nav>
-            <a href="{% url 'menu' %}">Меню</a>
-            <a href="{% url 'booking' %}">Бронювання</a>
-            <a href="/api/">REST API</a>
-            <a href="/graphql/">GraphQL</a>
+            <a href="{% url 'menu' %}">Menu</a>
+            <a href="{% url 'booking' %}">Booking</a>
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}" class="logout-form">
                     {% csrf_token %}
-                    <button type="submit">Вийти</button>
+                    <button type="submit">Logout</button>
                 </form>
             {% else %}
                 <a href="{% url 'login' %}">Login</a>
@@ -28,9 +27,9 @@
     </header>
 
     {% if messages %}
-        <div class="messages">
+        <div class="messages" role="status" aria-live="polite">
             {% for message in messages %}
-                <p>{{ message }}</p>
+                <p class="message {{ message.tags }}">{{ message }}</p>
             {% endfor %}
         </div>
     {% endif %}
@@ -38,5 +37,6 @@
     <main>
         {% block content %}{% endblock %}
     </main>
+    {% block extra_scripts %}{% endblock %}
 </body>
 </html>
