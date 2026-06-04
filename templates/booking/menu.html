@@ -1,11 +1,12 @@
 {% extends 'booking/base.html' %}
+{% load i18n %}
 
-{% block title %}Меню{% endblock %}
+{% block title %}{% trans "Menu" %}{% endblock %}
 
 {% block content %}
 <section class="page-head">
-    <p class="eyebrow">Меню ресторану</p>
-    <h1>Страви та графік роботи</h1>
+    <p class="eyebrow">{% trans "Restaurant menu" %}</p>
+    <h1>{% trans "Dishes and opening hours" %}</h1>
 </section>
 
 <section class="layout-two">
@@ -20,26 +21,26 @@
                     <h2>{{ item.name }}</h2>
                     <p>{{ item.description }}</p>
                 </div>
-                <strong>{{ item.price }} грн</strong>
+                <strong>{% blocktrans with price=item.price %}{{ price }} UAH{% endblocktrans %}</strong>
             </article>
         {% empty %}
-            <p>Меню ще порожнє. Додай страви через Django Admin.</p>
+            <p>{% trans "The menu is empty. Add dishes in Django Admin." %}</p>
         {% endfor %}
     </div>
 
     <aside class="side-panel">
-        <h2>Графік</h2>
+        <h2>{% trans "Schedule" %}</h2>
         {% for row in schedule %}
             <div class="schedule-row">
                 <span>{{ row.day }}</span>
                 {% if row.is_closed %}
-                    <strong>Зачинено</strong>
+                    <strong>{% trans "Closed" %}</strong>
                 {% else %}
                     <strong>{{ row.open_time|time:"H:i" }} - {{ row.close_time|time:"H:i" }}</strong>
                 {% endif %}
             </div>
         {% empty %}
-            <p>Графік можна заповнити в адмін-панелі.</p>
+            <p>{% trans "The schedule can be filled in the admin panel." %}</p>
         {% endfor %}
     </aside>
 </section>

@@ -1,7 +1,7 @@
 {% extends 'booking/base.html' %}
-{% load static %}
+{% load i18n static %}
 
-{% block title %}Register | Urban Table{% endblock %}
+{% block title %}{% trans "Register" %} | Urban Table{% endblock %}
 {% block body_class %}auth-page{% endblock %}
 
 {% block content %}
@@ -9,29 +9,29 @@
     <div class="auth-shell">
         <article class="auth-panel auth-hero">
             <div>
-                <p class="eyebrow">Create your account</p>
-                <h1>Book faster, remember less.</h1>
-                <p class="lead">Create a secure Urban Table account to save your details, manage bookings, and reset access securely when needed.</p>
+                <p class="eyebrow">{% trans "Create your account" %}</p>
+                <h1>{% trans "Book faster, remember less." %}</h1>
+                <p class="lead">{% trans "Create a secure Urban Table account to save your details, manage bookings, and reset access securely when needed." %}</p>
             </div>
             <div class="auth-metrics" aria-hidden="true">
                 <div class="auth-metric">
-                    <strong>Safe</strong>
-                    <small>Django password validators included</small>
+                    <strong>{% trans "Safe" %}</strong>
+                    <small>{% trans "Django password validators included" %}</small>
                 </div>
                 <div class="auth-metric">
-                    <strong>Fast</strong>
-                    <small>Responsive forms for mobile and desktop</small>
+                    <strong>{% trans "Fast" %}</strong>
+                    <small>{% trans "Responsive forms for mobile and desktop" %}</small>
                 </div>
                 <div class="auth-metric">
-                    <strong>Email</strong>
-                    <small>Ready for password reset flow</small>
+                    <strong>{% trans "Email" %}</strong>
+                    <small>{% trans "Ready for password reset flow" %}</small>
                 </div>
             </div>
         </article>
 
         <article class="auth-panel auth-card">
-            <h2>Create account</h2>
-            <p class="form-note">All fields are required.</p>
+            <h2>{% trans "Create account" %}</h2>
+            <p class="form-note">{% trans "All fields are required." %}</p>
 
             {% if form.non_field_errors %}
                 <div class="field-errors" role="alert">
@@ -42,7 +42,7 @@
             <form method="post" class="auth-form" data-loading-form>
                 {% csrf_token %}
                 <div class="field-group">
-                    <label for="{{ form.username.id_for_label }}">Username</label>
+                    <label for="{{ form.username.id_for_label }}">{% trans "Username" %}</label>
                     {{ form.username }}
                     {% for error in form.username.errors %}
                         <p class="field-error">{{ error }}</p>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="field-group">
-                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    <label for="{{ form.email.id_for_label }}">{% trans "Email" %}</label>
                     {{ form.email }}
                     {% for error in form.email.errors %}
                         <p class="field-error">{{ error }}</p>
@@ -58,10 +58,10 @@
                 </div>
 
                 <div class="field-group">
-                    <label for="{{ form.password1.id_for_label }}">Password</label>
+                    <label for="{{ form.password1.id_for_label }}">{% trans "Password" %}</label>
                     <div class="password-field">
                         {{ form.password1 }}
-                        <button type="button" class="toggle-password" data-password-toggle data-target="{{ form.password1.id_for_label }}">Show</button>
+                        <button type="button" class="toggle-password" data-password-toggle data-target="{{ form.password1.id_for_label }}" data-show-text="{% trans 'Show' %}" data-hide-text="{% trans 'Hide' %}">{% trans "Show" %}</button>
                     </div>
                     <p class="field-help">{{ form.password1.help_text|safe }}</p>
                     {% for error in form.password1.errors %}
@@ -70,22 +70,22 @@
                 </div>
 
                 <div class="field-group">
-                    <label for="{{ form.password2.id_for_label }}">Confirm password</label>
+                    <label for="{{ form.password2.id_for_label }}">{% trans "Confirm password" %}</label>
                     <div class="password-field">
                         {{ form.password2 }}
-                        <button type="button" class="toggle-password" data-password-toggle data-target="{{ form.password2.id_for_label }}">Show</button>
+                        <button type="button" class="toggle-password" data-password-toggle data-target="{{ form.password2.id_for_label }}" data-show-text="{% trans 'Show' %}" data-hide-text="{% trans 'Hide' %}">{% trans "Show" %}</button>
                     </div>
                     {% for error in form.password2.errors %}
                         <p class="field-error">{{ error }}</p>
                     {% endfor %}
                 </div>
 
-                <button class="auth-submit" type="submit" data-loading-text="Creating account...">Create account</button>
+                <button class="auth-submit" type="submit" data-loading-text="{% trans 'Creating account...' %}">{% trans "Create account" %}</button>
             </form>
 
             <div class="auth-links">
-                <span>Already have an account? <a href="{% url 'login' %}">Login</a></span>
-                <span>Need help? <a href="{% url 'password_reset' %}">Reset password</a></span>
+                <span>{% trans "Already have an account?" %} <a href="{% url 'login' %}">{% trans "Login" %}</a></span>
+                <span>{% trans "Need help?" %} <a href="{% url 'password_reset' %}">{% trans "Reset password" %}</a></span>
             </div>
         </article>
     </div>

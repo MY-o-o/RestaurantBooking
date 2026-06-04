@@ -5,6 +5,16 @@ const modal = document.getElementById('auth-modal');
 const closeModal = document.getElementById('close-modal');
 const checkBtn = document.getElementById('check-btn');
 const form = document.getElementById('booking-form');
+const config = window.bookingConfig || {};
+const messages = config.messages || {};
+
+function t(key, values = {}) {
+    let text = messages[key] || key;
+    Object.entries(values).forEach(([name, value]) => {
+        text = text.replace(`{${name}}`, value);
+    });
+    return text;
+}
 
 function setMessage(text) {
     message.textContent = text;
@@ -32,14 +42,14 @@ tiles.forEach((tile) => {
         clearSelection();
         tile.classList.add('selected');
         selectedInput.value = tile.dataset.tableId;
-        setMessage(`Обрано столик ${tile.querySelector('span').textContent}.`);
+        setMessage(t('selectedTable', {number: tile.querySelector('span').textContent}));
     });
 });
 
 async function checkAvailability() {
     const values = selectedValues();
     if (!values.date || !values.time || !values.guests) {
-        setMessage('Вкажи дату, час і кількість гостей.');
+        setMessage(t('missingFields'));
         return;
     }
 
@@ -51,7 +61,7 @@ async function checkAvailability() {
         }
     `;
 
-    const response = await fetch('/graphql/', {
+    const response = await fetch(config.graphqlUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -76,7 +86,7 @@ async function checkAvailability() {
         tile.classList.toggle('free', availableIds.has(tile.dataset.tableId));
     });
 
-    setMessage(`Знайдено доступних столиків: ${availableIds.size}.`);
+    setMessage(t('availableTables', {count: availableIds.size}));
 }
 
 checkBtn.addEventListener('click', checkAvailability);
@@ -91,11 +101,11 @@ form.addEventListener('submit', async (event) => {
 
     const values = selectedValues();
     if (!selectedInput.value) {
-        setMessage('Спочатку обери доступний столик.');
+        setMessage(t('selectTable'));
         return;
     }
 
-    const response = await fetch('/api/reservations/', {
+    const response = await fetch(config.reservationsUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -112,7 +122,7 @@ form.addEventListener('submit', async (event) => {
     });
 
     if (response.ok) {
-        setMessage('Бронювання створено.');
+        setMessage(t('reservationCreated'));
         await checkAvailability();
     } else {
         const error = await response.json();
@@ -138,7 +148,7 @@ socket.onmessage = (event) => {
         if (selectedInput.value === String(data.table_id)) {
             selectedInput.value = '';
         }
-        setMessage('Статус столика оновлено наживо через WebSocket.');
+        setMessage(t('liveUpdate'));
     }
 };
 

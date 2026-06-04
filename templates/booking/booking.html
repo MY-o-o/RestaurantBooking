@@ -1,56 +1,57 @@
 {% extends 'booking/base.html' %}
+{% load i18n static %}
 
-{% block title %}Бронювання{% endblock %}
+{% block title %}{% trans "Booking" %}{% endblock %}
 
 {% block content %}
 <section class="page-head">
-    <p class="eyebrow">Карта залу</p>
-    <h1>Бронювання столика</h1>
+    <p class="eyebrow">{% trans "Hall map" %}</p>
+    <h1>{% trans "Table booking" %}</h1>
 </section>
 
 <section class="booking-shell">
     <form class="filter-panel" id="booking-form">
         {% csrf_token %}
         <label>
-            Дата
+            {% trans "Date" %}
             <input type="date" id="date" name="date" required>
         </label>
         <label>
-            Час
+            {% trans "Time" %}
             <input type="time" id="time" name="time" required value="18:00">
         </label>
         <label>
-            Гостей
+            {% trans "Guests" %}
             <input type="number" id="guests" name="guests" min="1" value="2" required>
         </label>
         <label>
-            Зона
+            {% trans "Zone" %}
             <select id="zone" name="zone">
-                <option value="">Будь-яка</option>
+                <option value="">{% trans "Any" %}</option>
                 {% for hall in halls %}
                     <option value="{{ hall.zone }}">{{ hall.zone }} - {{ hall.name }}</option>
                 {% endfor %}
             </select>
         </label>
         <label>
-            Ім'я
+            {% trans "Name" %}
             <input type="text" id="customer_name" name="customer_name" value="{{ user.get_username }}" required>
         </label>
         <label>
-            Телефон
+            {% trans "Phone" %}
             <input type="tel" id="phone" name="phone" placeholder="+380..." required>
         </label>
         <input type="hidden" id="selected-table" name="table">
-        <button type="button" id="check-btn">Перевірити доступність</button>
-        <button type="submit" class="primary">Забронювати</button>
+        <button type="button" id="check-btn">{% trans "Check availability" %}</button>
+        <button type="submit" class="primary">{% trans "Book" %}</button>
         <p class="form-note" id="form-message"></p>
     </form>
 
     <div class="hall-map">
         <div class="legend">
-            <span><i class="legend-box free"></i> Вільний</span>
-            <span><i class="legend-box busy"></i> Зайнятий</span>
-            <span><i class="legend-box selected"></i> Обраний</span>
+            <span><i class="legend-box free"></i> {% trans "Available" %}</span>
+            <span><i class="legend-box busy"></i> {% trans "Reserved" %}</span>
+            <span><i class="legend-box selected"></i> {% trans "Selected" %}</span>
         </div>
         <div class="tables-grid" id="tables-grid">
             {% for table in tables %}
@@ -62,11 +63,11 @@
                     style="grid-column: {{ table.x }}; grid-row: {{ table.y }};"
                     type="button">
                     <span>{{ table.number }}</span>
-                    <small>{{ table.seats }} місць</small>
+                    <small>{% blocktrans count seats=table.seats %}{{ seats }} seat{% plural %}{{ seats }} seats{% endblocktrans %}</small>
                     <em>{{ table.hall.zone }}</em>
                 </button>
             {% empty %}
-                <p>Столики ще не створені. Додай їх в Django Admin.</p>
+                <p>{% trans "Tables have not been created yet. Add them in Django Admin." %}</p>
             {% endfor %}
         </div>
     </div>
@@ -74,13 +75,13 @@
 
 <div class="modal" id="auth-modal" hidden>
     <div class="modal-body">
-        <h2>Потрібен акаунт</h2>
-        <p>Бронювати столики можуть тільки зареєстровані користувачі.</p>
+        <h2>{% trans "Account required" %}</h2>
+        <p>{% trans "Only registered users can book tables." %}</p>
         <div class="actions">
-            <a class="button primary" href="{% url 'login' %}">Login</a>
-            <a class="button" href="{% url 'register' %}">Register</a>
+            <a class="button primary" href="{% url 'login' %}">{% trans "Login" %}</a>
+            <a class="button" href="{% url 'register' %}">{% trans "Register" %}</a>
         </div>
-        <button type="button" class="link-button" id="close-modal">Закрити</button>
+        <button type="button" class="link-button" id="close-modal">{% trans "Close" %}</button>
     </div>
 </div>
 
@@ -89,7 +90,17 @@
     window.bookingConfig = {
         csrfToken: document.querySelector('[name=csrfmiddlewaretoken]').value,
         isAuthenticated: JSON.parse(document.getElementById('is-authenticated').textContent),
+        graphqlUrl: "{% url 'graphql' %}",
+        reservationsUrl: "{% url 'reservation-list' %}",
+        messages: {
+            selectedTable: "{% trans 'Selected table {number}.' %}",
+            missingFields: "{% trans 'Enter the date, time, and number of guests.' %}",
+            availableTables: "{% trans 'Available tables found: {count}.' %}",
+            selectTable: "{% trans 'Choose an available table first.' %}",
+            reservationCreated: "{% trans 'Reservation created.' %}",
+            liveUpdate: "{% trans 'Table status updated live through WebSocket.' %}",
+        },
     };
 </script>
-<script src="/static/booking/booking.js"></script>
+<script src="{% static 'booking/booking.js' %}"></script>
 {% endblock %}

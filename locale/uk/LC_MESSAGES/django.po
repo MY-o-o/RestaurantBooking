@@ -1,0 +1,595 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: RestaurantBooking 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-04 00:00+0000\n"
+"PO-Revision-Date: 2026-06-04 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+msgid "Restaurant Booking"
+msgstr "Бронювання ресторану"
+
+msgid "Language"
+msgstr "Мова"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Booking"
+msgstr "Бронювання"
+
+msgid "Logout"
+msgstr "Вийти"
+
+msgid "Login"
+msgstr "Увійти"
+
+msgid "Register"
+msgstr "Реєстрація"
+
+msgid "Restaurant booking MVP"
+msgstr "MVP бронювання ресторану"
+
+msgid "Menu, table availability, reservations, and live status updates in one Django app."
+msgstr "Меню, доступність столиків, бронювання та live-оновлення статусів в одному Django-застосунку."
+
+msgid "Book a table"
+msgstr "Забронювати столик"
+
+msgid "View menu"
+msgstr "Переглянути меню"
+
+msgid "REST CRUD"
+msgstr "REST CRUD"
+
+msgid "GraphQL availability"
+msgstr "Доступність через GraphQL"
+
+msgid "WebSockets live status"
+msgstr "Live-статус через WebSockets"
+
+msgid "Restaurant menu"
+msgstr "Меню ресторану"
+
+msgid "Dishes and opening hours"
+msgstr "Страви та графік роботи"
+
+msgid "%(price)s UAH"
+msgstr "%(price)s грн"
+
+msgid "The menu is empty. Add dishes in Django Admin."
+msgstr "Меню поки порожнє. Додайте страви в Django Admin."
+
+msgid "Schedule"
+msgstr "Графік"
+
+msgid "Closed"
+msgstr "Зачинено"
+
+msgid "The schedule can be filled in the admin panel."
+msgstr "Графік можна заповнити в адмін-панелі."
+
+msgid "Hall map"
+msgstr "Карта залу"
+
+msgid "Table booking"
+msgstr "Бронювання столика"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Time"
+msgstr "Час"
+
+msgid "Guests"
+msgstr "Гостей"
+
+msgid "Zone"
+msgstr "Зона"
+
+msgid "Any"
+msgstr "Будь-яка"
+
+msgid "Name"
+msgstr "Ім'я"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Check availability"
+msgstr "Перевірити доступність"
+
+msgid "Book"
+msgstr "Забронювати"
+
+msgid "Available"
+msgstr "Вільний"
+
+msgid "Reserved"
+msgstr "Зайнятий"
+
+msgid "Selected"
+msgstr "Обраний"
+
+msgid "%(seats)s seat"
+msgid_plural "%(seats)s seats"
+msgstr[0] "%(seats)s місце"
+msgstr[1] "%(seats)s місця"
+msgstr[2] "%(seats)s місць"
+
+msgid "Tables have not been created yet. Add them in Django Admin."
+msgstr "Столики ще не створені. Додайте їх у Django Admin."
+
+msgid "Account required"
+msgstr "Потрібен акаунт"
+
+msgid "Only registered users can book tables."
+msgstr "Бронювати столики можуть тільки зареєстровані користувачі."
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Selected table {number}."
+msgstr "Обрано столик {number}."
+
+msgid "Enter the date, time, and number of guests."
+msgstr "Вкажіть дату, час і кількість гостей."
+
+msgid "Available tables found: {count}."
+msgstr "Знайдено доступних столиків: {count}."
+
+msgid "Choose an available table first."
+msgstr "Спочатку оберіть доступний столик."
+
+msgid "Reservation created."
+msgstr "Бронювання створено."
+
+msgid "Table status updated live through WebSocket."
+msgstr "Статус столика оновлено наживо через WebSocket."
+
+msgid "Secure access"
+msgstr "Безпечний доступ"
+
+msgid "Welcome back to Urban Table."
+msgstr "Вітаємо з поверненням до Urban Table."
+
+msgid "Sign in to manage reservations, review your booking history, and continue where you left off."
+msgstr "Увійдіть, щоб керувати бронюваннями, переглядати історію та продовжити з того місця, де зупинилися."
+
+msgid "1 click"
+msgstr "1 клік"
+
+msgid "to restore your password if needed"
+msgstr "щоб відновити пароль за потреби"
+
+msgid "24/7"
+msgstr "24/7"
+
+msgid "reservation access from any device"
+msgstr "доступ до бронювань з будь-якого пристрою"
+
+msgid "Secure"
+msgstr "Безпечно"
+
+msgid "passwords with Django validation"
+msgstr "паролі з валідацією Django"
+
+msgid "Use your existing account credentials."
+msgstr "Використайте дані свого наявного акаунта."
+
+msgid "Username"
+msgstr "Ім'я користувача"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Show"
+msgstr "Показати"
+
+msgid "Hide"
+msgstr "Сховати"
+
+msgid "Signing in..."
+msgstr "Вхід..."
+
+msgid "Sign in"
+msgstr "Увійти"
+
+msgid "Forgot password?"
+msgstr "Забули пароль?"
+
+msgid "New here?"
+msgstr "Вперше тут?"
+
+msgid "Create an account"
+msgstr "Створити акаунт"
+
+msgid "Create your account"
+msgstr "Створіть акаунт"
+
+msgid "Book faster, remember less."
+msgstr "Бронюйте швидше, пам'ятайте менше."
+
+msgid "Create a secure Urban Table account to save your details, manage bookings, and reset access securely when needed."
+msgstr "Створіть безпечний акаунт Urban Table, щоб зберігати дані, керувати бронюваннями та безпечно відновлювати доступ."
+
+msgid "Safe"
+msgstr "Безпечно"
+
+msgid "Django password validators included"
+msgstr "Валідатори паролів Django увімкнено"
+
+msgid "Fast"
+msgstr "Швидко"
+
+msgid "Responsive forms for mobile and desktop"
+msgstr "Адаптивні форми для мобільних і десктопних пристроїв"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Ready for password reset flow"
+msgstr "Готово до сценарію відновлення пароля"
+
+msgid "Create account"
+msgstr "Створити акаунт"
+
+msgid "All fields are required."
+msgstr "Усі поля обов'язкові."
+
+msgid "Confirm password"
+msgstr "Підтвердіть пароль"
+
+msgid "Creating account..."
+msgstr "Створення акаунта..."
+
+msgid "Already have an account?"
+msgstr "Вже маєте акаунт?"
+
+msgid "Need help?"
+msgstr "Потрібна допомога?"
+
+msgid "Reset password"
+msgstr "Скинути пароль"
+
+msgid "Account recovery"
+msgstr "Відновлення акаунта"
+
+msgid "Reset access without exposing your account."
+msgstr "Відновіть доступ без розкриття акаунта."
+
+msgid "Request a secure, time-limited reset link and create a stronger password in a couple of steps."
+msgstr "Запросіть безпечне посилання з обмеженим строком дії та створіть надійніший пароль за кілька кроків."
+
+msgid "Private"
+msgstr "Приватно"
+
+msgid "We do not reveal whether an email exists"
+msgstr "Ми не розкриваємо, чи існує email"
+
+msgid "Timed"
+msgstr "Обмежено в часі"
+
+msgid "Reset links expire automatically"
+msgstr "Посилання для скидання автоматично втрачають чинність"
+
+msgid "Logged"
+msgstr "Логується"
+
+msgid "Security events are recorded"
+msgstr "Події безпеки записуються"
+
+msgid "Enter the email address linked to your account."
+msgstr "Введіть email, пов'язаний з вашим акаунтом."
+
+msgid "Sending reset link..."
+msgstr "Надсилання посилання..."
+
+msgid "Send reset link"
+msgstr "Надіслати посилання"
+
+msgid "Back to login"
+msgstr "Назад до входу"
+
+msgid "Reset link sent"
+msgstr "Посилання надіслано"
+
+msgid "Email sent"
+msgstr "Лист надіслано"
+
+msgid "Check your inbox for the next step."
+msgstr "Перевірте пошту для наступного кроку."
+
+msgid "If an account matches the email you entered, we have sent a password reset message with a secure link."
+msgstr "Якщо акаунт відповідає введеному email, ми надіслали лист із безпечним посиланням для скидання пароля."
+
+msgid "One link"
+msgstr "Одне посилання"
+
+msgid "Works only for the intended account"
+msgstr "Працює тільки для потрібного акаунта"
+
+msgid "Short-lived"
+msgstr "Короткий строк дії"
+
+msgid "Expires according to project policy"
+msgstr "Втрачає чинність відповідно до політики проєкту"
+
+msgid "Trusted"
+msgstr "Надійно"
+
+msgid "Built with Django auth views"
+msgstr "Побудовано на Django auth views"
+
+msgid "Reset email sent"
+msgstr "Лист для скидання надіслано"
+
+msgid "Please check your email and follow the link to choose a new password."
+msgstr "Перевірте email і перейдіть за посиланням, щоб обрати новий пароль."
+
+msgid "Return to login"
+msgstr "Повернутися до входу"
+
+msgid "Send another link"
+msgstr "Надіслати ще одне посилання"
+
+msgid "Choose new password"
+msgstr "Оберіть новий пароль"
+
+msgid "Set a new password"
+msgstr "Встановіть новий пароль"
+
+msgid "Choose something stronger and unique."
+msgstr "Оберіть щось надійніше й унікальне."
+
+msgid "Your reset link is secure and time-limited. Create a password that meets Django's validation rules."
+msgstr "Ваше посилання для скидання безпечне й обмежене в часі. Створіть пароль, який відповідає правилам Django."
+
+msgid "Validated"
+msgstr "Перевірено"
+
+msgid "Django checks length and common passwords"
+msgstr "Django перевіряє довжину та поширені паролі"
+
+msgid "Your old password is never displayed"
+msgstr "Ваш старий пароль ніколи не відображається"
+
+msgid "Verified"
+msgstr "Підтверджено"
+
+msgid "Token is checked before saving"
+msgstr "Токен перевіряється перед збереженням"
+
+msgid "Enter the same password twice to confirm the change."
+msgstr "Введіть той самий пароль двічі, щоб підтвердити зміну."
+
+msgid "New password"
+msgstr "Новий пароль"
+
+msgid "Saving password..."
+msgstr "Збереження пароля..."
+
+msgid "Save password"
+msgstr "Зберегти пароль"
+
+msgid "The reset link is invalid or has expired. Request a new link to continue."
+msgstr "Посилання для скидання недійсне або строк його дії минув. Запросіть нове посилання, щоб продовжити."
+
+msgid "Request a new reset link"
+msgstr "Запросити нове посилання"
+
+msgid "Password updated"
+msgstr "Пароль оновлено"
+
+msgid "Your account is secure again."
+msgstr "Ваш акаунт знову захищений."
+
+msgid "You can now sign in with your new password and continue managing reservations."
+msgstr "Тепер ви можете увійти з новим паролем і продовжити керувати бронюваннями."
+
+msgid "Done"
+msgstr "Готово"
+
+msgid "Password reset flow completed"
+msgstr "Сценарій скидання пароля завершено"
+
+msgid "Old token can no longer be reused"
+msgstr "Старий токен більше не можна використати повторно"
+
+msgid "Ready"
+msgstr "Готово"
+
+msgid "Sign in to continue booking"
+msgstr "Увійдіть, щоб продовжити бронювання"
+
+msgid "Password changed"
+msgstr "Пароль змінено"
+
+msgid "Your password has been updated successfully."
+msgstr "Ваш пароль успішно оновлено."
+
+msgid "Return home"
+msgstr "Повернутися на головну"
+
+msgid "Reset your password securely"
+msgstr "Безпечно скиньте пароль"
+
+msgid "We received a request to reset the password for your Urban Table account. Use the button below to choose a new password."
+msgstr "Ми отримали запит на скидання пароля для вашого акаунта Urban Table. Скористайтеся кнопкою нижче, щоб обрати новий пароль."
+
+msgid "This link expires automatically and only works for your account. If you did not request this, you can ignore this message."
+msgstr "Це посилання автоматично втрачає чинність і працює тільки для вашого акаунта. Якщо ви не надсилали цей запит, просто проігноруйте повідомлення."
+
+msgid "If the button does not work, copy and paste this link into your browser:"
+msgstr "Якщо кнопка не працює, скопіюйте це посилання та вставте його в браузер:"
+
+msgid "You're receiving this email because a password reset was requested for your Urban Table account."
+msgstr "Ви отримали цей лист, тому що для вашого акаунта Urban Table було запитано скидання пароля."
+
+msgid "Reset your password:"
+msgstr "Скиньте пароль:"
+
+msgid "If you did not request this change, you can ignore this email. The link expires automatically."
+msgstr "Якщо ви не запитували цю зміну, можете проігнорувати цей лист. Посилання автоматично втратить чинність."
+
+msgid "Thanks,"
+msgstr "Дякуємо,"
+
+msgid "The Urban Table team"
+msgstr "Команда Urban Table"
+
+msgid "Reset your Urban Table password"
+msgstr "Скиньте пароль Urban Table"
+
+msgid "Enter your username"
+msgstr "Введіть ім'я користувача"
+
+msgid "Enter your password"
+msgstr "Введіть пароль"
+
+msgid "Choose a username"
+msgstr "Оберіть ім'я користувача"
+
+msgid "Create a strong password"
+msgstr "Створіть надійний пароль"
+
+msgid "Repeat your password"
+msgstr "Повторіть пароль"
+
+msgid "Create a new password"
+msgstr "Створіть новий пароль"
+
+msgid "Repeat the new password"
+msgstr "Повторіть новий пароль"
+
+msgid "Account created successfully."
+msgstr "Акаунт успішно створено."
+
+msgid "Please wait before requesting another reset link."
+msgstr "Зачекайте перед запитом ще одного посилання для скидання."
+
+msgid "This table does not have enough seats."
+msgstr "За цим столиком недостатньо місць."
+
+msgid "This table is already reserved for the selected date and time."
+msgstr "Цей столик уже заброньовано на обрану дату й час."
+
+msgid "Starters"
+msgstr "Закуски"
+
+msgid "Main dishes"
+msgstr "Основні страви"
+
+msgid "Desserts"
+msgstr "Десерти"
+
+msgid "Drinks"
+msgstr "Напої"
+
+msgid "name"
+msgstr "назва"
+
+msgid "description"
+msgstr "опис"
+
+msgid "price"
+msgstr "ціна"
+
+msgid "category"
+msgstr "категорія"
+
+msgid "image URL"
+msgstr "URL зображення"
+
+msgid "is available"
+msgstr "доступно"
+
+msgid "menu item"
+msgstr "позиція меню"
+
+msgid "menu items"
+msgstr "позиції меню"
+
+msgid "day"
+msgstr "день"
+
+msgid "open time"
+msgstr "час відкриття"
+
+msgid "close time"
+msgstr "час закриття"
+
+msgid "is closed"
+msgstr "зачинено"
+
+msgid "working hours"
+msgstr "графік роботи"
+
+msgid "closed"
+msgstr "зачинено"
+
+msgid "zone"
+msgstr "зона"
+
+msgid "hall"
+msgstr "зал"
+
+msgid "halls"
+msgstr "зали"
+
+msgid "number"
+msgstr "номер"
+
+msgid "seats"
+msgstr "місця"
+
+msgid "is active"
+msgstr "активний"
+
+msgid "restaurant table"
+msgstr "столик ресторану"
+
+msgid "restaurant tables"
+msgstr "столики ресторану"
+
+msgid "Table %(number)s - %(hall)s"
+msgstr "Столик %(number)s - %(hall)s"
+
+msgid "user"
+msgstr "користувач"
+
+msgid "table"
+msgstr "столик"
+
+msgid "date"
+msgstr "дата"
+
+msgid "time"
+msgstr "час"
+
+msgid "guests"
+msgstr "гості"
+
+msgid "customer name"
+msgstr "ім'я клієнта"
+
+msgid "phone"
+msgstr "телефон"
+
+msgid "created at"
+msgstr "створено"
+
+msgid "reservation"
+msgstr "бронювання"
+
+msgid "reservations"
+msgstr "бронювання"
+
+msgid "%(name)s: table %(table)s on %(date)s %(time)s"
+msgstr "%(name)s: столик %(table)s на %(date)s %(time)s"

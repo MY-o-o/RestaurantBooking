@@ -42,23 +42,37 @@ class BookingProjectTests(TestCase):
         )
 
     def test_public_pages_render(self):
-        for url in ['/', '/menu/', '/booking/']:
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], '/en/')
+
+        for url in ['/en/', '/en/menu/', '/en/booking/']:
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200)
 
+    def test_root_redirect_uses_browser_language(self):
+        response = self.client.get('/', HTTP_ACCEPT_LANGUAGE='uk,en;q=0.8')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], '/uk/')
+
+    def test_ukrainian_translation_renders(self):
+        response = self.client.get('/uk/menu/')
+        self.assertContains(response, 'Меню ресторану')
+        self.assertContains(response, 'грн')
+
     def test_rest_menu_is_public(self):
-        response = self.client.get('/api/menu/')
+        response = self.client.get('/en/api/menu/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()[0]['name'], 'Margherita Pizza')
 
     def test_reservation_requires_authentication(self):
-        response = self.client.post('/api/reservations/', {})
+        response = self.client.post('/en/api/reservations/', {})
         self.assertEqual(response.status_code, 403)
 
     def test_authenticated_user_can_create_reservation(self):
         client = APIClient()
         client.force_authenticate(user=self.user)
-        response = client.post('/api/reservations/', {
+        response = client.post('/en/api/reservations/', {
             'table': self.table.id,
             'date': '2026-05-25',
             'time': '18:00',
@@ -85,7 +99,7 @@ class BookingProjectTests(TestCase):
 
     def test_login_page_shows_password_reset_link(self):
         response = self.client.get(reverse('login'))
-        self.assertContains(response, 'Forgot Password?')
+        self.assertContains(response, 'Forgot password?')
         self.assertContains(response, 'data-password-toggle')
 
     def test_registration_flow_saves_email_and_logs_user_in(self):

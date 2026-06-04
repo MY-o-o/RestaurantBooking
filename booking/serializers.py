@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.utils.translation import gettext_lazy as _
 
 from .models import Hall, MenuItem, Reservation, RestaurantTable, WorkingHours
 
@@ -46,9 +47,9 @@ class ReservationSerializer(serializers.ModelSerializer):
         guests = attrs.get('guests')
 
         if table and guests and guests > table.seats:
-            raise serializers.ValidationError('This table does not have enough seats.')
+            raise serializers.ValidationError(_('This table does not have enough seats.'))
         if table and date and time and Reservation.objects.filter(table=table, date=date, time=time).exists():
-            raise serializers.ValidationError('This table is already reserved for the selected date and time.')
+            raise serializers.ValidationError(_('This table is already reserved for the selected date and time.'))
         return attrs
 
     def create(self, validated_data):

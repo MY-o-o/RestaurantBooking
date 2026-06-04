@@ -1,22 +1,23 @@
 {% extends 'booking/base.html' %}
+{% load i18n %}
 
 {% block title %}Urban Table{% endblock %}
 
 {% block content %}
 <section class="hero">
     <div>
-        <p class="eyebrow">Restaurant booking MVP</p>
+        <p class="eyebrow">{% trans "Restaurant booking MVP" %}</p>
         <h1>Urban Table</h1>
-        <p class="lead">Меню, доступність столиків, бронювання та live-оновлення статусів в одному Django-застосунку.</p>
+        <p class="lead">{% trans "Menu, table availability, reservations, and live status updates in one Django app." %}</p>
         <div class="actions">
-            <a class="button primary" href="{% url 'booking' %}">Забронювати столик</a>
-            <a class="button" href="{% url 'menu' %}">Переглянути меню</a>
+            <a class="button primary" href="{% url 'booking' %}">{% trans "Book a table" %}</a>
+            <a class="button" href="{% url 'menu' %}">{% trans "View menu" %}</a>
         </div>
     </div>
     <div class="hero-panel">
-        <span class="status-dot free"></span> REST CRUD
-        <span class="status-dot busy"></span> GraphQL availability
-        <span class="status-dot live"></span> WebSockets live status
+        <span class="status-dot free"></span> {% trans "REST CRUD" %}
+        <span class="status-dot busy"></span> {% trans "GraphQL availability" %}
+        <span class="status-dot live"></span> {% trans "WebSockets live status" %}
     </div>
 </section>
 {% endblock %}

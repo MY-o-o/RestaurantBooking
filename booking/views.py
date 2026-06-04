@@ -1,6 +1,7 @@
 from django.contrib.auth import login
 from django.contrib import messages
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext_lazy as _
 
 from .forms import RegistrationForm
 from .models import Hall, MenuItem, RestaurantTable, WorkingHours
@@ -28,7 +29,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, 'Account created successfully.')
+            messages.success(request, _('Account created successfully.'))
             return redirect('booking')
     else:
         form = RegistrationForm()
