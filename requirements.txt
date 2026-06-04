@@ -3,3 +3,4 @@ djangorestframework==3.17.1
 graphene-django==3.2.3
 channels==4.3.2
 daphne==4.2.1
+whitenoise==6.12.0

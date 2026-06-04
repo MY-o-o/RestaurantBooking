@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t=#ys7ja&3b_uf!h+zqq31=(sjqs7-k(cfi%*b10ol#774xeyk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['restaurant-booking-drab.vercel.app']
+ALLOWED_HOSTS = ['restaurant-booking-drab.vercel.app', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -132,6 +133,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'Urban Table <no-reply@urbantable.local>'
