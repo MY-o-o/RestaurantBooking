@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t=#ys7ja&3b_uf!h+zqq31=(sjqs7-k(cfi%*b10ol#774xeyk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['restaurant-booking-drab.vercel.app']
 
 
 # Application definition
