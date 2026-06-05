@@ -3,11 +3,13 @@
 {% get_available_languages as AVAILABLE_LANGUAGES %}
 <!doctype html>
 <html lang="{{ CURRENT_LANGUAGE }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% trans "Restaurant Booking" %}{% endblock %}</title>
     <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon-96x96.png' %}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
@@ -20,6 +22,7 @@
     <link rel="stylesheet" href="{% static 'booking/styles.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
+
 <body class="{% block body_class %}{% endblock %}">
     <header class="topbar">
         <a class="brand" href="{% url 'home' %}">Urban Table</a>
@@ -27,37 +30,35 @@
             <a href="{% url 'menu' %}">{% trans "Menu" %}</a>
             <a href="{% url 'booking' %}">{% trans "Booking" %}</a>
             {% if user.is_authenticated %}
-                <form method="post" action="{% url 'logout' %}" class="logout-form">
-                    {% csrf_token %}
-                    <button type="submit">{% trans "Logout" %}</button>
-                </form>
+            <form method="post" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit">{% trans "Logout" %}</button>
+            </form>
             {% else %}
-                <a href="{% url 'login' %}">{% trans "Login" %}</a>
-                <a class="nav-pill" href="{% url 'register' %}">{% trans "Register" %}</a>
+            <a href="{% url 'login' %}">{% trans "Login" %}</a>
+            <a class="nav-pill" href="{% url 'register' %}">{% trans "Register" %}</a>
             {% endif %}
-            <form action="{% url 'set_language' %}" method="post" class="language-switcher" aria-label="{% trans 'Language' %}">
+            <form action="{% url 'set_language' %}" method="post" class="language-switcher"
+                aria-label="{% trans 'Language' %}">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.get_full_path }}">
                 {% for language_code, language_name in AVAILABLE_LANGUAGES %}
-                    <button
-                        type="submit"
-                        name="language"
-                        value="{{ language_code }}"
-                        class="language-option{% if language_code == CURRENT_LANGUAGE %} active{% endif %}"
-                        aria-pressed="{% if language_code == CURRENT_LANGUAGE %}true{% else %}false{% endif %}">
-                        {{ language_name }}
-                    </button>
+                <button type="submit" name="language" value="{{ language_code }}"
+                    class="language-option{% if language_code == CURRENT_LANGUAGE %} active{% endif %}"
+                    aria-pressed="{% if language_code == CURRENT_LANGUAGE %}true{% else %}false{% endif %}">
+                    {{ language_name }}
+                </button>
                 {% endfor %}
             </form>
         </nav>
     </header>
 
     {% if messages %}
-        <div class="messages" role="status" aria-live="polite">
-            {% for message in messages %}
-                <p class="message {{ message.tags }}">{{ message }}</p>
-            {% endfor %}
-        </div>
+    <div class="messages" role="status" aria-live="polite">
+        {% for message in messages %}
+        <p class="message {{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>
     {% endif %}
 
     <main>
@@ -65,4 +66,5 @@
     </main>
     {% block extra_scripts %}{% endblock %}
 </body>
+
 </html>
