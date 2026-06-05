@@ -26,8 +26,27 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-t=#ys7ja&3b_uf!h+zqq3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+
+def _env_list(name, default=''):
+    return [item.strip() for item in os.environ.get(name, default).split(',') if item.strip()]
+
+
+def _trusted_origins(name, default=''):
+    origins = []
+    for item in _env_list(name, default):
+        if '://' in item:
+            origins.append(item)
+        else:
+            origins.append(f'https://{item}')
+    return origins
+
+
 _ALLOWED = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost')
 ALLOWED_HOSTS = [h.strip() for h in _ALLOWED.split(',') if h.strip()]
+CSRF_TRUSTED_ORIGINS = _trusted_origins(
+    'CSRF_TRUSTED_ORIGINS',
+    'http://127.0.0.1:8000,http://localhost:8000',
+)
 
 
 # Application definition
@@ -77,6 +96,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'RestaurantBooking.wsgi.application'
 ASGI_APPLICATION = 'RestaurantBooking.asgi.application'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Database
