@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t=#ys7ja&3b_uf!h+zqq31=(sjqs7-k(cfi%*b10ol#774xeyk'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-t=#ys7ja&3b_uf!h+zqq31=(sjqs7-k(cfi%*b10ol#774xeyk')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['restaurant-booking-drab.vercel.app', '127.0.0.1', 'localhost']
+_ALLOWED = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost')
+ALLOWED_HOSTS = [h.strip() for h in _ALLOWED.split(',') if h.strip()]
 
 
 # Application definition
@@ -83,7 +85,7 @@ ASGI_APPLICATION = 'RestaurantBooking.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.environ.get('DATABASE_PATH', str(BASE_DIR / 'db.sqlite3')),
     }
 }
 

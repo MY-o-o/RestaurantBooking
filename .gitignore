@@ -10,5 +10,3 @@ staticfiles/
 .env
 .venv/
 venv/
-
-restaurant-booking.zip
